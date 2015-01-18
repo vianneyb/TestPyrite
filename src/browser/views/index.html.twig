@@ -1,0 +1,23 @@
+{% extends "/src/browser/layouts/layout.html.twig" %}
+
+{% import '/src/browser/views/macro.hello.twig' as helloHelper %}
+
+
+
+{% block content %}
+
+<div class="container">
+{{toto}}
+    {% for item in 1..5 %}
+    	{{ helloHelper.hello(item,toto) }}
+
+			<!-- <h{{item}}>Hello, {{toto}}! {{ i }}</h{{item}}> -->
+
+	{% endfor %}
+
+</div>
+
+
+
+
+{% endblock %}

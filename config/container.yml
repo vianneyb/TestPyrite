@@ -1,0 +1,83 @@
+include:
+    - ../vendor/evaneos/pyrite/config/pyrite.yml
+    # - ../vendor/evaneos/evframework/config/container/container.yml
+
+
+parameters:
+    app_name: "test-pyrite"
+    app_version: debug
+
+    root_dir: /Users/vianneybriois/www/experimental/test-pyrite/
+    secured_dir: /Users/vianneybriois/www/experimental/test-pyrite/tmp/secured
+    production_mode: false
+
+    root_url: http://test-pyrite.dev
+    display_errors: true
+
+
+    cookie:
+        dev:
+           domain: .test-pyrite.dev
+
+    cookie_parameters:
+        dev:
+           domain: .test-pyrite.dev
+        es:
+           domain: .test-pyrite.dev
+        it:
+           domain: .test-pyrite.dev
+        de:
+           domain: .test-pyrite.dev
+        en:
+           domain: .test-pyrite.dev
+
+    default_locale:
+        test-pyrite_dev: dev
+        default: dev
+        all: [ dev ]
+
+classes:
+
+    HelloController:
+        class: \TestPyrite\Controller\HelloController
+
+    LayoutLayer:
+        class: \TestPyrite\Framework\Layer\LayoutLayer
+
+    AppErrorHandler:
+        class: \Pyrite\Exception\ErrorHandlerImpl
+        arguments: [ 0, true ] # minimum level (taken from constant E_*), 2nd parameter to enable or disable conversion of errors into Exceptions
+        singleton: true
+        call:
+            setLogger: [ @AppLogger ]
+            setOnFatalRenderer: [ @AppOnCrashHandler ]
+    AppOnCrashHandler:
+        class: \Pyrite\Exception\SymfonyUncaughtExceptionRendererAdapter
+        arguments: [ %display_errors ] # true to enable StackTrace
+        singleton: true
+        call:
+            setLogger: [ @AppLogger ]
+    AppLogger:
+        class: \Monolog\Logger
+        singleton: true
+        arguments: [ 'APP' ]
+        call:
+            pushHandler: [ @AppLoggerHandler ]
+    AppLoggerHandler:
+        class: \Monolog\Handler\ErrorLogHandler
+        arguments: [ 0, 100 ]
+
+    TwigTemplateEngine:
+        class: Pyrite\Templating\TwigEngine
+        arguments: [ $container ]
+
+    AppLogger:
+        class: \Monolog\Logger
+        singleton: true
+        arguments: [ 'APP' ]
+        call:
+            pushHandler[0]: [ @AppLoggerHandler ]
+            pushHandler[1]: [ @AppSlackHandler ]
+
+
+

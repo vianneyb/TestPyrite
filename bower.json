@@ -1,0 +1,10 @@
+{
+  "name": "TestPyrite",
+  "version": "0.0.1",
+  "authors": [
+    "vianney <vianney@evaneos.com>"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1"
+  }
+}

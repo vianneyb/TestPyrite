@@ -1,0 +1,50 @@
+.vagrant
+*.pyc
+
+bin
+node_modules
+
+.idea
+.DS_Store
+
+.buildpath
+.project
+.settings
+
+
+
+#######
+# TMP #
+#######
+tmp/*
+tmp/**/*
+
+#######
+# LIB #
+#######
+
+# composer
+vendor
+# npm
+node_modules
+# bower
+bower_components
+
+##########
+# CONFIG #
+##########
+
+
+##########
+# EDITOR #
+##########
+
+
+
+############
+# PUBLIC #
+############
+
+public/vendor
+
+
