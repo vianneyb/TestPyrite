@@ -14,7 +14,7 @@ class HelloController implements Executable
      */
     public function execute(Request $request, ResponseBag $bag)
     {
-    	$bag->set("toto","hahahahahaaaaa");
+    	$bag->set("toto",$request->get('name'));
     	return "success";
     }
 

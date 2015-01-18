@@ -1,7 +1,7 @@
 routes:
     hello:
         route:
-            pattern: "/hello"
+            pattern: "/hello/{name}"
             methods: [ get ]
         dispatch:
             PyriteSessionFactory: { 'start': true }
