@@ -79,5 +79,9 @@ classes:
             pushHandler[0]: [ @AppLoggerHandler ]
             pushHandler[1]: [ @AppSlackHandler ]
 
+    ErrorMiddleware:
+        class: \TestPyrite\Framework\Middleware\ErrorMiddleware
+        arguments: [ $container ]
+
 
 

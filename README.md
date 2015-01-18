@@ -11,6 +11,10 @@
 
 # Note
 
+#### Error Middleware
+- nice display of error, trace, ...
+- go to /error/
+
 #### update Js and Css dist files version
 - update the version in package.json
 - run gulp build

@@ -4,6 +4,7 @@ routes:
             pattern: "/hello/{name}"
             methods: [ get ]
         dispatch:
+            ErrorMiddleware: {"exceptions":true, "errors":true}
             PyriteSessionFactory: { 'start': true }
             PyriteApplicationFactory:
                 LayoutLayer: { 'layout': "/src/browser/layouts/layout.html/twig" }
@@ -12,3 +13,17 @@ routes:
                     success: /src/browser/views/index.html.twig
                 # ExecutorExtended: { 'class':HelloController , 'method':meta }
                 ExecutorExtended: { 'class':HelloController , 'method':execute }
+
+    error:
+        route:
+            pattern: "/error/"
+            methods: [ get ]
+        dispatch:
+            ErrorMiddleware: {"exceptions":true, "errors":true}
+            PyriteSessionFactory: { 'start': true }
+            PyriteApplicationFactory:
+                LayoutLayer: { 'layout': "/src/browser/layouts/layout.html/twig" }
+                # responsible of setting seo Meta
+                ViewRenderer:
+                    success: /src/browser/views/index.html.twig
+                ExecutorExtended: { 'class':HelloController , 'method':errorTest }

@@ -25,4 +25,9 @@ class HelloController implements Executable
         // $bag->addMeta("title",$bag->get('toto'));
         return "success";
     }
+
+    public function errorTest(Request $request, ResponseBag $bag)
+    {
+        $div = 1/0;
+    }
 }
